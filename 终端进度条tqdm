@@ -1,0 +1,38 @@
+pip install tqdm
+
+
+
+import time
+from tqdm import *
+for i in tqdm(range(1000)):
+    time.sleep(.01)    #进度条每0.1s前进一次，总时间为1000*0.1=100s
+    
+   
+   
+# -*- coding: utf-8 -*-
+ 
+from tqdm import tqdm
+from collections import OrderedDict
+ 
+total = 100 #总迭代次数
+loss = total
+with tqdm(total=total, desc="进度条") as pbar:
+    for i  in range(total):
+        loss -= 1 
+#        pbar.set_postfix(OrderedDict(loss='{0:1.5f}'.format(loss)))
+        pbar.set_postfix({'loss' : '{0:1.5f}'.format(loss)}) #输入一个字典，显示实验指标
+        pbar.update(1)
+
+--------------------- 
+作者：qq_32464407 
+来源：CSDN 
+原文：https://blog.csdn.net/qq_32464407/article/details/81113373 
+版权声明：本文为博主原创文章，转载请附上博文链接！
+
+
+from tqdm import tqdm,trange
+import time
+ 
+for i in trange(1,4):
+    print('第%d次执行'%i)
+    time.sleep(5)
