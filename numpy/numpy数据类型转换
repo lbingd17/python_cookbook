@@ -1,0 +1,43 @@
+numpy数据类型转换需要调用方法astype()，不能直接修改dtype。调用astype返回数据类型修改后的数据，但是源数据的类型不会变，需要进一步对源数据的赋值操作才能改变。例如
+
+>>> a=np.array([1.1, 1.2])
+>>> a.dtype
+dtype('float64')
+>>> a.astype(np.int16)
+array([1, 1], dtype=int16)
+>>> a.dtype
+dtype('float64') #a的数据类型并没有变
+>>> a=a.astype(np.int16) #赋值操作后a的数据类型变化
+>>> a.dtype
+dtype('int16')
+>>> a
+array([1, 1], dtype=int16)
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+直接修改dtype数据会强制用新数据类型表示，并没有转换，因此输出错误数据
+
+>>> a=np.array([1.1, 1.2])
+>>> a.dtype
+dtype('float64')
+>>> a.dtype=np.int16
+>>> a.dtype
+dtype('int16') 
+>>> a
+array([-26214, -26215, -26215,  16369,  13107,  13107,  13107,  16371], dtype=int16)
+#原来float64相当于4个int16的位宽，这样强制转换后会将他们直接拆开成4个数，
+#因此原来的两个float64成了8个int16
+--------------------- 
+作者：苗小熊 
+来源：CSDN 
+原文：https://blog.csdn.net/miao20091395/article/details/79276721 
+版权声明：本文为博主原创文章，转载请附上博文链接！
